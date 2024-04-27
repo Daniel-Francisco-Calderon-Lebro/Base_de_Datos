@@ -1,0 +1,159 @@
+
+#############################################################################
+                    CURSO DE BASES DE DATOS CON SQLITE
+#############################################################################
+FUNCION PARA CREAR BASE DE DATOS
+sqlite3 -init sqlite.sql
+
+
+#############################################################################
+                    FORMAS DE CREAR TABLAS CON SUS RESPECTIVOS DATOS
+#############################################################################
+# CREAR TABLA CON CONDICIONES
+
+CREATE TABLA IF NOT EXISTS NOMBRE_TABLA(
+ID INTEGER (LONGITUD) PRIMARY KEY,
+NOMBRE TEXT (LONGITUD),
+APELLIDO TEXT (LONGITUD)
+)
+# CREAR TABLA SIN CONDICIONES
+
+CREATE TABLA NOMBRE_TABLA(
+ID INTEGER (LONGITUD) PRIMARY KEY,
+NOMBRE TEXT (LONGITUD),
+APELLIDO TEXT (LONGITUD)
+)
+
+/////////////////////////////////////////////////////////////////////////////
+# EJEMPLOS REALES DE CREAR TABLA
+
+CREATE TABLE IF NOT EXISTS USUARIOS (
+ID INTEGER (10) PRIMARY KEY,
+NOMBRE TEXT (50),
+APELLIDO TEXT (50),
+EMAIL TEXT (50)
+);
+
+
+#############################################################################
+                        INSERTAR DATOS EN TABLAS
+#############################################################################
+# INSERTA DATOS
+
+INSERT INTO NOMBRE_TABLA (ID, COLUMNA_1, COLUMNA_2) VALUES (1, 'VALOR_1', 'VALOR_2');
+
+INSERT INTO NOMBRE_TABLA VALUES (1, 'VALOR_1', 'VALOR_2');
+
+/////////////////////////////////////////////////////////////////////////////
+EJEMPLOS REALES DE INSERTAR DATOS
+
+INSERT INTO USUARIOS (ID, NOMBRE, APELLIDO, EMAIL) VALUES
+(1, 'JUAN', 'PEREZ', 'j@j.com');
+
+
+#############################################################################
+                        CONSULTAR DATOS EN TABLAS
+#############################################################################
+# CONSULTA TODOS LOS DATOS DE LA TABLA
+
+SELECT * FROM NOMBRE_TABLA;
+
+# CONSULTA COLUMNA_1 Y COLUMNA_2
+
+SELECT COLUMNA_1, COLUMNA_2 FROM NOMBRE_TABLA;
+
+# CONSULTA UNA UNICA COLUMNA CON VALORES ESTABLECIDO
+
+SELECT * FROM NOMBRE_TABLA WHERE COLUMNA_1 = 'VALOR_1';
+
+# CONSULTA VARIAS COLUMNAS CON VALORES ESTABLECIDOS
+
+SELECT * FROM NOMBRE_TABLA WHERE COLUMNA_1 = 'VALOR_1' AND COLUMNA_2 = 'VALOR_2';
+
+/////////////////////////////////////////////////////////////////////////////
+EJEMPLOS REALES DE CONSULTAR DATOS
+
+SELECT * FROM USUARIOS;
+
+SELECT NOMBRE, APELLIDO FROM USUARIOS;
+
+SELECT * FROM USUARIOS WHERE EMAIL = 'j@j.com';
+
+SELECT * FROM USUARIOS WHERE NOMBRE = 'JUAN' AND APELLIDO = 'PEREZ';
+
+SELECT CORREO FROM USUARIOS WHERE ID = 1;
+#############################################################################
+                        ACTUALIZAR DATOS EN TABLAS
+#############################################################################
+# ACTUALIZA COLUMNA_1 = VALOR_1
+
+UPDATE NOMBRE_TABLA SET COLUMNA_1 = 'VALOR_1' WHERE COLUMNA_1 = 'VALOR_1';
+
+# ACTUALIZA COLUMNA_1 = VALOR_1 Y COLUMNA_2 = VALOR_2
+
+UPDATE NOMBRE_TABLA SET COLUMNA_1 = 'VALOR_1', COLUMNA_2 = 'VALOR_2' WHERE COLUMNA_1 = 'VALOR_1' AND COLUMNA_2 = 'VALOR_2';
+
+/////////////////////////////////////////////////////////////////////////////
+EJEMPLOS REALES DE ACTUALIZAR DATOS
+
+UPDATE USUARIOS SET EMAIL = 'j@j.com' WHERE EMAIL = 'j@j.com';
+
+UPDATE USUARIOS SET NOMBRE = 'JUAN', APELLIDO = 'PEREZ' WHERE NOMBRE = 'JUAN' AND APELLIDO = 'PEREZ';
+
+#############################################################################
+                        ELIMINAR DATOS EN TABLAS
+#############################################################################
+# ELIMINA COLUMNA_1 = VALOR_1
+
+DELETE FROM NOMBRE_TABLA WHERE COLUMNA_1 = 'VALOR_1';
+
+# ELIMINA COLUMNA_1 = VALOR_1 Y COLUMNA_2 = VALOR_2
+
+DELETE FROM NOMBRE_TABLA WHERE COLUMNA_1 = 'VALOR_1' AND COLUMNA_2 = 'VALOR_2';
+
+# ELIMINA UNA COLUMNA
+
+DROP COLUMN COLUMNA;
+
+
+/////////////////////////////////////////////////////////////////////////////
+# EJEMPLOS REALES DE ELIMINAR DATOS
+
+DELETE FROM USUARIOS WHERE EMAIL = 'j@j.com';
+
+DELETE FROM USUARIOS WHERE NOMBRE = 'JUAN' AND APELLIDO = 'PEREZ';
+
+#############################################################################
+                        ALTERAR TABLAS
+#############################################################################
+# ALTERA TABLA
+
+ALTER TABLE NOMBRE_TABLA RENAME TO NOMBRE_TABLA_NUEVO;
+
+# ALTERA TABLA COLUMNA_1 A COLUMNA_2
+
+ALTER TABLE NOMBRE_TABLA RENAME COLUMNA_1 TO COLUMNA_2;
+
+# ALTERA TABLA COLUMNA_1 A COLUMNA_2 Y COLUMNA_3 A COLUMNA_4
+
+ALTER TABLE NOMBRE_TABLA RENAME COLUMNA_1 TO COLUMNA_2, COLUMNA_3 TO COLUMNA_4;
+
+# AGREGA UNA COLUMNA
+
+ALTER TABLE NOMBRE_TABLA ADD COLUMNA TEXT (LONGITUD);
+
+/////////////////////////////////////////////////////////////////////////////
+# EJEMPLOS REALES DE ALTERAR TABLA
+
+ALTER TABLE USUARIOS RENAME TO USUARIOS_NUEVO;
+
+ALTER TABLE USUARIOS RENAME NOMBRE TO EMAIL;
+
+ALTER TABLE USUARIOS RENAME NOMBRE TO EMAIL, APELLIDO TO NOMBRE;
+
+ALTER TABLE USUARIOS RENAME NOMBRE TO EMAIL, APELLIDO TO NOMBRE, EMAIL TO APELLIDO;
+
+ALTER TABLE USUARIOS ADD EMAIL TEXT (50);
+#############################################################################
+
+
